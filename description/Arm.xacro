@@ -4,6 +4,13 @@
 <!-- <xacro:include filename="material.xacro"/> -->
 <xacro:include filename="$(find spatial_manipulator)/description/Arm.trans" />
 <xacro:include filename="$(find spatial_manipulator)/description/Arm.gazebo" />
+
+<joint name="arm_joint" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="arm_base_link"/>
+    <origin xyz="0.15 0.0 0.2" rpy="0.0 0.0 ${pi}"/>
+</joint>
+
 <link name="arm_base_link">
   <inertial>
     <origin xyz="-3.0728641490355835e-17 0.0 0.026990189047542933" rpy="0 0 0"/>
