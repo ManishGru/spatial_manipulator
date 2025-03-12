@@ -25,7 +25,7 @@
             <update_rate>100</update_rate>
             <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
                 <frame_name>imu_link</frame_name>
-                <initialOrientationAsReference>false</initialOrientationAsReference>
+                <initial_orientation_as_reference>false</initial_orientation_as_reference>
             </plugin>
         </sensor>
     </gazebo>

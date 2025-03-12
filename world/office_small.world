@@ -82,7 +82,7 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>8278 877000000</sim_time>
+      <sim_time>0 0</sim_time>
       <real_time>2388 716007937</real_time>
       <wall_time>1483584500 175380351</wall_time>
       <iterations>2177055</iterations>
