@@ -14,6 +14,12 @@ def generate_launch_description():
     
     use_ros2_control= LaunchConfiguration("use_ros2_control")
     
+    use_ros2_control_arg= DeclareLaunchArgument(
+        "use_ros2_control",
+        default_value="true",
+        description="Use ros2 control if true"
+    )
+    
     pkg_path = os.path.join(get_package_share_directory('spatial_manipulator'))
     xacro_file = os.path.join(pkg_path,"description","robot.urdf.xacro")
     # robot_description_config = xacro.process_file(xacro_file).toxml()
@@ -35,7 +41,7 @@ def generate_launch_description():
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(get_package_share_directory("gazebo_ros"),"launch","gazebo.launch.py")]),
         launch_arguments={"world":os.path.join(pkg_path,"world","office_small.world"),
-                          'extra_gazebo_args':'--ros-args --params-file' + gazebo_params_file}.items()
+                          'extra_gazebo_args':'--ros-args --params-file ' + gazebo_params_file}.items()
     ) 
     spawn_entity = Node(
         package="gazebo_ros",
@@ -72,16 +78,24 @@ def generate_launch_description():
             os.path.join(pkg_path,"config","default.rviz")
         ]
     )
+    twist_mux_param = os.path.join(pkg_path,"config","twist_mux.yaml")
+    twist_mux_node = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        parameters=[
+            twist_mux_param,
+            {"use_sim_time":True}
+        ],
+        remappings=[("/cmd_vel_out","/diff_cont/cmd_vel_unstamped")]
+    )
     
     return LaunchDescription([
-        DeclareLaunchArgument(
-            "use_ros2_control",
-            default_value="true",
-            description="Use ros2 control if true"),
+        use_ros2_control_arg,
         node_robot_state_publisher,
         gazebo,
         spawn_entity,
         diff_drive_spawner,
         joint_broadcaster_spawner,
         rviz2,
+        twist_mux_node
     ])
