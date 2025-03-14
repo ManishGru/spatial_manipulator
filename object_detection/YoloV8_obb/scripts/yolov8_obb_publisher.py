@@ -13,6 +13,8 @@ from message_filters import ApproximateTimeSynchronizer, Subscriber
 from yolov8_msgs.msg import InferenceResult
 from yolov8_msgs.msg import Yolov8Inference
 
+import cv2
+
 bridge = CvBridge()
 
 class Camera_subscriber(Node):
@@ -20,7 +22,7 @@ class Camera_subscriber(Node):
     def __init__(self):
         super().__init__('camera_subscriber')
 
-        self.model = YOLO('/Users/anmolchalise/Downloads/moveit2_obb/src/yolov8_obb/scripts/best.pt')
+        self.model = YOLO('/home/ubuntu-fpga/prj_ws/src/YoloV8_obb/scripts/best.pt')
 
         self.yolov8_inference = Yolov8Inference()
         
@@ -33,13 +35,14 @@ class Camera_subscriber(Node):
         # Subscribe to camera info to get intrinsics
         self.camera_info_sub = self.create_subscription(
             CameraInfo,
-            '/camera_info',
+            '/camera/depth/camera_info',
             self.camera_info_callback,
             10)
             
+ 
         # Using message filters to synchronize RGB and depth images
-        self.rgb_sub = Subscriber(self, Image, '/image_raw')
-        self.depth_sub = Subscriber(self, Image, '/depth_image')
+        self.rgb_sub = Subscriber(self, Image, '/camera/image_raw')
+        self.depth_sub = Subscriber(self, Image, '/camera/depth/image_raw')
         
         # Synchronize messages with a 0.1 second tolerance
         self.ts = ApproximateTimeSynchronizer(
@@ -62,7 +65,9 @@ class Camera_subscriber(Node):
 
     def synchronized_callback(self, rgb_msg, depth_msg):
         # Convert RGB image
-        img = bridge.imgmsg_to_cv2(rgb_msg, "bgr8")
+        img = bridge.imgmsg_to_cv2(rgb_msg, desired_encoding="bgr8")
+        
+        self.get_logger().info(f"box")
         
         # Convert depth image
         # Note: The encoding might be different based on your depth camera (16UC1, 32FC1, etc.)
@@ -71,7 +76,7 @@ class Camera_subscriber(Node):
         except Exception as e:
             self.get_logger().error(f"Error converting depth image: {e}")
             return
-            
+        
         # Run inference on RGB image
         results = self.model(img, conf=0.90)
         
@@ -79,14 +84,19 @@ class Camera_subscriber(Node):
         self.yolov8_inference.header.stamp = self.get_clock().now().to_msg()
         
         for r in results:
+            self.get_logger().info(f"ldjflsadf")
             if(r.obb is not None):
                 boxes = r.obb
+                self.get_logger().info(f"jdfjlskdjfl{boxes}")
                 for box in boxes:
+                    print("kjfhakhdfkajdf")
+                    self.get_logger().info(f"manish")
                     self.inference_result = InferenceResult()
                     b = box.xyxyxyxy[0].to('cpu').detach().numpy().copy()
                     c = box.cls
-                    self.inference_result.class_name = self.model.names[int(c)]
                     
+                    self.inference_result.class_name = self.model.names[int(c)]
+                    print(self.inference_result.class_name)
                     # Get 2D coordinates from the detection
                     a = b.reshape(1,8)
                     points_2d = a[0].reshape(4, 2)
@@ -123,12 +133,13 @@ class Camera_subscriber(Node):
                                 
                             # Store original 2D coordinates
                             self.inference_result.coordinates = copy.copy(a[0].tolist())
-                            
+                            points_3d = [float(value) for value in points_3d]
                             # Store 3D coordinates (x,y,z for each corner)
+                            print(points_3d)
                             self.inference_result.coordinates_3d = points_3d
                             
                             # Store depth value
-                            self.inference_result.depth = depth_value
+                            self.inference_result.depth = float(depth_value)
                             
                             self.yolov8_inference.yolov8_inference.append(self.inference_result)
                         else:
