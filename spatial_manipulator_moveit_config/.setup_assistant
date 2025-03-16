@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: spatial_manipulator
+    relative_path: description/robot.urdf.xacro
+    xacro_args: use_ros2_control:=true
+  srdf:
+    relative_path: config/spatial_manipulator.srdf
+  package_settings:
+    author_name: ManishGru
+    author_email: gurumanish2015@gmail.com
+    generated_timestamp: 1742063997
