@@ -6,7 +6,7 @@ from launch.substitutions import LaunchConfiguration, Command
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-
+from moveit_configs_utils import MoveItConfigsBuilder
 
 import xacro
 
@@ -29,6 +29,25 @@ def generate_launch_description():
         'use_sim_time':True,
     }
     
+    moveit_config =(
+        MoveItConfigsBuilder("spatial_manipulator")
+        .robot_description(file_path=xacro_file)
+        .trajectory_execution(file_path="config/moveit_controllers.yaml")
+        .robot_description_kinematics(file_path="config/kinematics.yaml")
+        .planning_scene_monitor(
+            publish_robot_description=True,
+            publish_robot_description_semantic=True
+        )
+        .planning_pipelines(pipelines=["ompl"])
+        .to_moveit_configs()
+    )
+    run_moveit_group_node = Node(
+        package="moveit_ros_move_group",
+        executable="move_group",
+        output="screen",
+        parameters=[moveit_config.to_dict(),{"use_sim_time":True}]
+        
+    )
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -52,7 +71,9 @@ def generate_launch_description():
             "-entity",
             "spatial_manipulator_bot",
             "-timeout",
-            "120"
+            "120",
+            "-z",
+            "0.1"
         ],
         output='screen',
     )
@@ -66,7 +87,18 @@ def generate_launch_description():
     joint_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_broad"]
+        arguments=["joint_state_broadcaster"]
+    )
+    
+    joint_trajectory_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["arm_controller"]
+    )
+    gripper_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["gripper_controller"]
     )
     
     rviz2 = Node(
@@ -96,6 +128,9 @@ def generate_launch_description():
         spawn_entity,
         diff_drive_spawner,
         joint_broadcaster_spawner,
+        joint_trajectory_controller_spawner,
+        gripper_controller_spawner,
         rviz2,
-        twist_mux_node
+        twist_mux_node,
+        run_moveit_group_node
     ])

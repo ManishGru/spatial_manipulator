@@ -89,6 +89,6 @@ We can tweak additional parameters in nav2_param file for additional features.
 
 ## Common problems
 
-- gzserver process died
+- gzserver process died or robot doesn't spawn in gazebo environment
 
       killall gzserver

@@ -6,9 +6,15 @@ controller_manager:
     diff_cont:
       type: diff_drive_controller/DiffDriveController
     
-    joint_broad:
+    joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
+    arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    gripper_controller:
+      type: position_controllers/GripperActionController
+    
 
 diff_cont:
   ros__parameters:
@@ -58,3 +64,36 @@ diff_cont:
     # angular.z.max_deceleration_reverse: .NAN
     # angular.z.max_jerk: .NAN
     # angular.z.min_jerk: .NAN
+
+
+arm_controller:
+  ros__parameters:
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    joints:
+      - first_joint
+      - second_joint
+      - third_joint
+      - fourth_joint
+      - fifth_joint
+    
+    state_publish_rate: 50.0
+    action_monitor_rate: 20.0
+
+    allow_partial_joint_goals: false
+    hardware_state_has_offset: true
+    deduce_states_from_derivatives: true
+
+    constraints:
+      stopped_velocity_tolerance: 0.01
+      goal_time: 0.0
+
+
+gripper_controller:
+  ros__parameters:
+    joint: gripper_joint
+    
+    action_monitor_rate: 20.0

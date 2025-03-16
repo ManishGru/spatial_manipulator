@@ -3,7 +3,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:include filename="material.xacro" />
     <xacro:include filename="inertial_macros.xacro" />
-    <!-- <xacro:include filename="Arm.xacro" /> -->
 
     <link name="base_link">
     </link>
@@ -67,7 +66,7 @@
             </geometry>
         </collision>
 
-        <xacro:inertial_cylinder mass="0.5" length="0.05" radius="0.08">
+        <xacro:inertial_cylinder mass="0.9" length="0.05" radius="0.08">
             <origin xyz="0 0 0" rpy="0 0 0" />
         </xacro:inertial_cylinder>
     </link>
@@ -97,7 +96,7 @@
             </geometry>
         </collision>
 
-        <xacro:inertial_cylinder mass="0.5" length="0.05" radius="0.08">
+        <xacro:inertial_cylinder mass="0.9" length="0.05" radius="0.08">
             <origin xyz="0 0 0" rpy="0 0 0" />
         </xacro:inertial_cylinder>
     </link>
@@ -126,7 +125,7 @@
             </geometry>
         </collision>
 
-        <xacro:inertial_cylinder mass="0.2" length="0.05" radius="0.04">
+        <xacro:inertial_cylinder mass="0.5" length="0.05" radius="0.04">
             <origin xyz="0 0 0" rpy="0 0 0" />
         </xacro:inertial_cylinder>
     </link>
@@ -153,7 +152,7 @@
                 <sphere radius="0.03" />
             </geometry>
         </collision>
-        <xacro:inertial_sphere mass="0.6" radius="0.03">
+        <xacro:inertial_sphere mass="0.8" radius="0.03">
             <origin xyz="0 0 0" rpy="0 0 0" />
         </xacro:inertial_sphere>
     </link>
