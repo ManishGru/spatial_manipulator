@@ -1,0 +1,409 @@
+<?xml version="1.0"?>
+<!-- created with Phobos 1.0.1 "Capricious Choutengan" -->
+  <robot name="arm_v2">
+
+    <link name="Back_L">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Back_wheel_L">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Torus.002.dae" scale="0.53225 0.53225 0.6753"/>
+        </geometry>
+      </visual>
+      <collision name="Back_wheel_L.000">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Torus.001.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="Back_R">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Back_wheel_R">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Torus.005.dae" scale="0.53225 0.53225 0.6753"/>
+        </geometry>
+      </visual>
+      <collision name="Back_wheel_R.000">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Torus.000.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="Base">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Base Link">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Circle.dae" scale="1.68886 1.68886 1.68886"/>
+        </geometry>
+        <material name="Material.003"/>
+      </visual>
+    </link>
+
+    <link name="Base_Link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Base Joint">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Plane.001.dae" scale="0.58732 0.58732 0.58732"/>
+        </geometry>
+        <material name="Material.003"/>
+      </visual>
+    </link>
+
+    <link name="Chassis">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Chassis.001">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Plane.dae" scale="2.0198 2.0198 2.0198"/>
+        </geometry>
+      </visual>
+      <collision name="Chassis.001">
+        <origin xyz="0 0 0.23159" rpy="0 0 0"/>
+        <geometry>
+          <box size="4.91757 7.82779 0.52576"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="Elbow">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Elbow.001">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Plane.002.dae" scale="0.32111 0.55187 0.37191"/>
+        </geometry>
+        <material name="Material.004"/>
+      </visual>
+    </link>
+
+    <link name="Front_L">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Front_Wheel_L">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Torus.007.dae" scale="0.53225 0.53225 0.6753"/>
+        </geometry>
+      </visual>
+      <collision name="Front_Wheel_L.000">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Torus.004.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="Front_R">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Front_Wheel_R">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Torus.008.dae" scale="0.53225 0.53225 0.6753"/>
+        </geometry>
+      </visual>
+      <collision name="Front_Wheel_R.000">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Torus.003.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="Gripper_Base">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Gripper Base">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Plane.005.dae" scale="0.64948 0.64948 0.64948"/>
+        </geometry>
+        <material name="Black"/>
+      </visual>
+    </link>
+
+    <link name="Gripper_L">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Gripper_L.001">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Plane.003.dae" scale="0.78569 0.78569 0.78569"/>
+        </geometry>
+        <material name="Material.004"/>
+      </visual>
+    </link>
+
+    <link name="Gripper_R">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Gripper_R.001">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Plane.007.dae" scale="0.78569 -0.78569 0.78569"/>
+        </geometry>
+        <material name="Material.004"/>
+      </visual>
+    </link>
+
+    <link name="Sensor">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Cube">
+        <origin xyz="0 0.00063 0.15515" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Cube.002.dae" scale="0.58884 0.20167 0.20167"/>
+        </geometry>
+      </visual>
+      <visual name="Left_eye">
+        <origin xyz="-0.20507 0.0194 0.43971" rpy="1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="0.148" length="0.39103"/>
+        </geometry>
+        <material name="Material.001"/>
+      </visual>
+      <visual name="Right_eye">
+        <origin xyz="-0.24517 0.08001 0.45292" rpy="1.5708 0 0"/>
+        <geometry>
+          <cylinder radius="0.148" length="0.39103"/>
+        </geometry>
+        <material name="Material.001"/>
+      </visual>
+      <visual name="Sensor.001">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.16173" length="0.71109"/>
+        </geometry>
+        <material name="turnarrow"/>
+      </visual>
+      <collision name="Cube">
+        <origin xyz="0 0.00063 0.15515" rpy="0 0 0"/>
+        <geometry>
+          <box size="1.17768 0.40335 0.40335"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="Shoulder">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Arm link">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Cube.001.dae" scale="0.19211 0.52371 0.19211"/>
+        </geometry>
+        <material name="Material.004"/>
+      </visual>
+    </link>
+
+    <link name="Wrist">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Wrist link">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Circle.001.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="Black"/>
+      </visual>
+    </link>
+
+    <link name="Wrist_Link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.001"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual name="Wrist Joint">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://my_arm_description/meshes/dae/Plane.004.dae" scale="0.55526 0.55526 0.55526"/>
+        </geometry>
+        <material name="Material.004"/>
+      </visual>
+    </link>
+
+    <joint name="Back_L" type="continuous">
+      <origin xyz="-2.82349 -2.76626 0.21895" rpy="1.5708 0 1.5708"/>
+      <parent link="Chassis"/>
+      <child link="Back_L"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Back_R" type="continuous">
+      <origin xyz="2.82626 -2.76626 0.21895" rpy="1.5708 0 1.5708"/>
+      <parent link="Chassis"/>
+      <child link="Back_R"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Base" type="continuous">
+      <origin xyz="0 0 0.49075" rpy="0 0 0"/>
+      <parent link="Chassis"/>
+      <child link="Base"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Base_Link" type="fixed">
+      <origin xyz="0 0 0.44296" rpy="0 0 0"/>
+      <parent link="Base"/>
+      <child link="Base_Link"/>
+    </joint>
+
+    <joint name="Elbow" type="revolute">
+      <origin xyz="-0.00527 -0.00012 3.29883" rpy="0 0 0"/>
+      <parent link="Shoulder"/>
+      <child link="Elbow"/>
+      <axis xyz="0 1.0 0"/>
+      <limit lower="-1.0472" upper="1.0472" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Front_L" type="continuous">
+      <origin xyz="-2.82349 2.76626 0.21895" rpy="1.5708 0 1.5708"/>
+      <parent link="Chassis"/>
+      <child link="Front_L"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Front_R" type="continuous">
+      <origin xyz="2.82349 2.76626 0.21895" rpy="1.5708 0 1.5708"/>
+      <parent link="Chassis"/>
+      <child link="Front_R"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Gripper_Base" type="fixed">
+      <origin xyz="0 0 0.22154" rpy="0 0 0"/>
+      <parent link="Wrist"/>
+      <child link="Gripper_Base"/>
+    </joint>
+
+    <joint name="Gripper_L" type="prismatic">
+      <origin xyz="0 -0.5924 0.36401" rpy="0 0 0"/>
+      <parent link="Gripper_Base"/>
+      <child link="Gripper_L"/>
+      <axis xyz="0 -1.0 0"/>
+      <limit lower="-0.355" upper="0" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Gripper_R" type="prismatic">
+      <origin xyz="0 0.59447 0.36401" rpy="0 0 0"/>
+      <parent link="Gripper_Base"/>
+      <child link="Gripper_R"/>
+      <axis xyz="0 1.0 0"/>
+      <limit lower="-0.355" upper="0" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Sensor" type="revolute">
+      <origin xyz="0 3.23307 0.77739" rpy="0 0 0"/>
+      <parent link="Chassis"/>
+      <child link="Sensor"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-1.5572" upper="1.5572" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Shoulder" type="revolute">
+      <origin xyz="0 0 0.72067" rpy="0 0 0"/>
+      <parent link="Base_Link"/>
+      <child link="Shoulder"/>
+      <axis xyz="0 1.0 0"/>
+      <limit lower="-0.52" upper="0.52" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Wrist" type="continuous">
+      <origin xyz="0 0 0.76917" rpy="0 0 0"/>
+      <parent link="Wrist_Link"/>
+      <child link="Wrist"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="Wrist_Link" type="revolute">
+      <origin xyz="0.01262 -0.00092 3.20476" rpy="0 0 0"/>
+      <parent link="Elbow"/>
+      <child link="Wrist_Link"/>
+      <axis xyz="0 1.0 0"/>
+      <limit lower="-1.5572" upper="1.5572" effort="0" velocity="0"/>
+    </joint>
+
+    <material name="Black">
+      <color rgba="0.33 0 0.55 1.0"/>
+    </material>
+
+    <material name="Material.001">
+      <color rgba="0.12414 0 0.64 1.0"/>
+    </material>
+
+    <material name="Material.003">
+      <color rgba="0.26341 0.4495 0.64 1.0"/>
+    </material>
+
+    <material name="Material.004">
+      <color rgba="0.64 0.05413 0.04581 1.0"/>
+    </material>
+
+    <material name="turnarrow">
+      <color rgba="0.18701 0.35775 0.64 1.0"/>
+    </material>
+
+  </robot>
